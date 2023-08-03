@@ -72,6 +72,21 @@ project/plugins/project/
 .idea/**/gradle.xml
 .idea/**/libraries
 
+.idea/aws.xml
+.idea/misc.xml
+.idea/sbt.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/codeStyles/Project.xml
+.idea/modules/backup-estimate-tool.iml
+.idea/modules/common.iml
+.idea/modules/findfilename.iml
+.idea/modules/inspectoid.iml
+.idea/modules/manual-media-backup-build.iml
+.idea/modules/manual-media-backup.iml
+.idea/modules/manualbackup.iml
+.idea/modules/removearchived.iml
+.idea/modules/showmxschecksum.iml
+
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using

@@ -1,0 +1,77 @@
+timeOfLastBuild: 22.08.2022:11:01:01
+buildTime: 122.0 s
+githubRepo: https://github.com/guardian/manual-media-backup#refs/heads/master
+Number of build steps: 7
+
+Step number: 1
+Name: Log in to Docker
+
+Name: script.content, Value: echo 1mNP734ETJC0 | docker login -u andyg42 --password-stdin
+Name: teamcity.step.mode, Value: default
+Name: use.custom.script, Value: true
+
+
+Step number: 2
+Name: Build upload-estimate tool
+
+Name: plugin.docker.imageId, Value: golang:1.13-buster
+Name: script.content, Value: #!/bin/bash
+
+if [ -d "upload-estimate" ]; then
+   echo Building upload-estimate...
+   cd upload-estimate
+   GOOS=linux go build
+else
+   echo upload-estimate not present
+fi
+Name: teamcity.step.mode, Value: default
+Name: use.custom.script, Value: true
+
+
+Step number: 3
+Name: Build and upload manual-media-backup
+
+Name: jvmArgs, Value: -Xmx512m -XX:ReservedCodeCacheSize=128m
+Name: sbt.args, Value: ;project manualbackup;clean;compile;test;docker:publish
+Name: sbt.installationMode, Value: auto
+Name: teamcity.step.mode, Value: default
+
+
+Step number: 4
+Name: Build and upload remove-archived
+
+Name: jvmArgs, Value: -Xmx512m -XX:ReservedCodeCacheSize=128m
+Name: sbt.args, Value: ;project removearchived;clean;compile;test;docker:publish
+Name: sbt.installationMode, Value: auto
+Name: teamcity.step.mode, Value: default
+
+
+Step number: 5
+Name: Build and upload unclog-vidispine
+
+Name: jvmArgs, Value: -Xmx512m -XX:ReservedCodeCacheSize=128m
+Name: sbt.args, Value: ;project unclog-vidispine;clean;compile;test;docker:publish
+Name: sbt.installationMode, Value: auto
+Name: teamcity.step.mode, Value: default
+
+
+Step number: 6
+Name: Build and upload push-proxies
+
+Name: jvmArgs, Value: -Xmx512m -XX:ReservedCodeCacheSize=128m
+Name: sbt.args, Value: ;project push-proxies;clean;compile;test;docker:publish
+Name: sbt.installationMode, Value: auto
+Name: teamcity.step.mode, Value: default
+
+
+Step number: 7
+Name: Build and upload backup-estimate-tool
+
+Name: jvmArgs, Value: -Xmx512m -XX:ReservedCodeCacheSize=128m
+Name: sbt.args, Value: ;project backup-estimate-tool;clean;compile;test;docker:publish
+Name: sbt.installationMode, Value: auto
+Name: teamcity.step.mode, Value: default
+
+
+languages:
+buildNumber: 271
